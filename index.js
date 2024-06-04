@@ -4,19 +4,21 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-const convidados = ['alice', 'bob', 'charlie', 'david'];
+const convidados = ['Alice', 'Bob', 'Charlie', 'David'];
 
-app.get('/', function (req, res) {
-  res.send('Hello Worlds');
+// Rota para listar todos os convidados
+app.get('/convidados', (req, res) => {
+  res.json({ convidados });
 });
 
+// Rota para procurar um convidado pelo nome
 app.get('/convidado/:nome', (req, res) => {
-  const nome = req.params.nome;
+  const nome = req.params.nome.toLowerCase(); // Convertendo para minúsculas para garantir correspondência insensível a maiúsculas e minúsculas
   const estaNaLista = convidados.includes(nome);
   if (estaNaLista) {
-    res.send({ mensagem: 'Sim, você está na lista!' });
+    res.json({ mensagem: 'Sim, você está na lista!' });
   } else {
-    res.send({ mensagem: 'Não, você não está na lista!' });
+    res.json({ mensagem: 'Não, você não está na lista!' });
   }
 });
 
