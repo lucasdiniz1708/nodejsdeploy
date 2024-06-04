@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
-const convidados = ['Alice', 'Bob', 'Charlie', 'David'];
+const convidados = ['alice', 'bob', 'charlie', 'david'];
 
 app.get('/', function (req, res) {
   res.send('Hello Worlds');
